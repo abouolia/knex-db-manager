@@ -197,6 +197,13 @@ _.map(availableDatabases, function (db) {
         });
     });
 
+    it('#existDB should detarmine the database exist or no.', function(){
+      return dbManager.existDb(dbManager.config.knex.connection.database)
+        then(function(result){
+          expect(result).to.equal(true);
+        });
+    });
+
     it("#migrateDb should update version and run migrations", function () {
       return dbManager.dbVersion(dbManager.config.knex.connection.database)
         .then(function (originalVersionInfo) {
